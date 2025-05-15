@@ -15,4 +15,15 @@
     <string name="title_confirm_exit_message">Bạn có chắc chắn muốn thoát không?</string>
     <string name="title_confirm_exit_ok">Đồng ý</string>
     <string name="title_confirm_exit_cancel">Hủy</string>
+    <string name="title_employee_healthcare">CSSK</string>
+    <string name="title_employee_salary">Tiền lương</string>
+    <string name="title_activity_employee_healthcare">Nhân viên CSSK</string>
+    <string name="title_height">Chiều cao:</string>
+    <string name="title_weight">"Cân nặng:"</string>
+    <string name="title_calculate">Tính BMI</string>
+    <string name="title_clear">Xóa</string>
+    <string name="title_close">Đóng</string>
+    <string name="title_result">Kết quả BMI</string>
+    <string name="title_category">Danh mục SP</string>
+    <string name="title_product">Sản phẩm</string>
 </resources>

@@ -114,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
     public void do_exit(View view) {
         AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this) ;
         //thiết lập tiu đề

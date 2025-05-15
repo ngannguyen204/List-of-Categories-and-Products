@@ -98,6 +98,10 @@ public class MainActivity extends AppCompatActivity {
         txtEmployee=findViewById(R.id.txtEmployee);
         imgCustomer=findViewById(R.id.imgCustomer);
         txtCustomer=findViewById(R.id.txtCustomer);
+        imgCategory = findViewById(R.id.imgCategory);
+        txtCategory = findViewById(R.id.txtCategory);
+        imgProduct = findViewById(R.id.imgProduct);
+        txtProduct = findViewById(R.id.txtProduct);
 
     }
 
