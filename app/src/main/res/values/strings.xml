@@ -25,5 +25,7 @@
     <string name="title_result">Result</string>
     <string name="title_category">Category</string>
     <string name="title_product">Product</string>
+    <string name="title_advanced_product" />
+    <string name="title_advanced_product_main">Advanced Product\n</string>
 
 </resources>

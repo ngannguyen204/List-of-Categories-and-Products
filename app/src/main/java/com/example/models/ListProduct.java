@@ -28,4 +28,5 @@ public class ListProduct {
         addProduct(new Product(7, "Heineken", 60, 2.5, 4));   // Beer
         addProduct(new Product(8, "Tiger Beer", 70, 2.3, 4)); // Beer
     }
+
 }

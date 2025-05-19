@@ -29,17 +29,17 @@ public class CategoryManagementActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        addviews();
+      //  addviews();
     }
 
-    private void addviews() {
-        lvCategory=findViewById(R.id.lvCategory);
-        adapter= new ArrayAdapter<>(
-                CategoryManagementActivity.this,
-                android.R.layout.simple_list_item_1
-        );
-        lc.generate_sample_dataset();
-        adapter.addAll(lc.getCategories());
-        lvCategory.setAdapter(adapter);
-    }
+//    private void addviews() {
+//        lvCategory=findViewById(R.id.lvCategory);
+//        adapter= new ArrayAdapter<>(
+//                CategoryManagementActivity.this,
+//                android.R.layout.simple_list_item_1
+//        );
+//        lc.generate_sample_dataset();
+//        adapter.addAll(lc.getCategories());
+//        lvCategory.setAdapter(adapter);
+//    }
 }
