@@ -27,5 +27,27 @@
     <string name="title_product">Product</string>
     <string name="title_advanced_product" />
     <string name="title_advanced_product_main">Advanced Product\n</string>
+    <string name="title_create_new_customer">New customer</string>
+    <string name="title_broadcast_advertising">Broadcast advertising</string>
+    <string name="title_help">Help</string>
+    <string name="title_customer_detail">Customer detail</string>
+    <string name="title_customer_id">Customer ID:</string>
+    <string name="title_customer_name">Customer name:</string>
+    <string name="title_customer_email">Customer email</string>
+    <string name="title_customer_phone">Customer phone</string>
+    <string name="title_new">New</string>
+    <string name="title_save">Save</string>
+    <string name="title_remove">Remove</string>
+    <string name="product_image" />
+    <string name="product_id" />
+    <string name="product_name">Product name</string>
+    <string name="quality">Quality</string>
+    <string name="price">Price</string>
+    <string name="category_id" />
+    <string name="title_category_id">Category ID</string>
+    <string name="title_product_id">Product ID</string>
+    <string name="title_product_detail">Product Detail\n</string>
+    <string name="title_create_new_product">New product\n</string>
+    <string name="title_search_product">Search product</string>
 
 </resources>

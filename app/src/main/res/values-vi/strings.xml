@@ -26,4 +26,8 @@
     <string name="title_result">Kết quả BMI</string>
     <string name="title_category">Danh mục SP</string>
     <string name="title_product">Sản phẩm</string>
+    <string name="title_create_new_customer">Khách hàng mới</string>
+    <string name="title_broadcast_advertising">Gửi quảng cáo</string>
+    <string name="title_help">Hỗ trợ</string>
+    <string name="title_customer_detail">Thông tin khách hàng</string>
 </resources>

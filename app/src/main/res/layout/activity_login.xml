@@ -83,15 +83,15 @@
         android:orientation="horizontal">
 
         <Button
-            android:onClick="do_login"
             android:id="@+id/btnLogin"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
             android:layout_weight="1"
+            android:onClick="do_login"
             android:text="@string/title_login_button_login"
             android:textSize="20sp"
-            android:layout_marginStart="10dp"
-        android:layout_marginEnd="5dp"
             app:backgroundTint="@color/button_teal" />
 
         <ImageButton
