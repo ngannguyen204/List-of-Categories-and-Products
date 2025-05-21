@@ -73,7 +73,7 @@ public class ProductManagementActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Product selectedProduct = (Product) parent.getItemAtPosition(position);
                 Intent intent = new Intent(ProductManagementActivity.this, ProductDetailActivity.class);
-                intent.putExtra("product_id", selectedProduct.getId());
+                intent.putExtra("SELECTED_PRODUCT", selectedProduct);
                 startActivity(intent);
             }
         });
