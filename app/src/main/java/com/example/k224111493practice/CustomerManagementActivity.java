@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -29,6 +30,10 @@ public class CustomerManagementActivity extends AppCompatActivity {
     MenuItem menu_new_customer;
     MenuItem menu_broadcast_advertising;
     MenuItem menu_help;
+
+    final int ID_CREATE_NEW_CUSTOMER=1;
+    final int ID_UPDATE_CUSTOMER=2;
+
 
     
     @Override
@@ -106,7 +111,32 @@ public class CustomerManagementActivity extends AppCompatActivity {
     }
 
     private void openNewCustomerActivity() {
-// tsau làm
+        Intent intent = new Intent(CustomerManagementActivity.this, CustomerDetailActivity.class);
+        startActivityForResult(intent,ID_CREATE_NEW_CUSTOMER);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==ID_CREATE_NEW_CUSTOMER && resultCode==1000)
+        {
+            //lấy kết quả ra:
+            Customer c= (Customer) data.getSerializableExtra("NEW_CUSTOMER");
+            //tới đây có 2 tình huống: Mới or Cập nhật?
+            process_save_customer(c);
+
+        }
+    }
+    private  void process_save_customer(Customer c)
+    {
+        boolean result=lc.isExisting(c);
+        if(result==true)//đã tồn tại cus này rồi
+            return;//không thêm mới
+        //còn muốn cập nhật thì viết code cập nhật
+        //các mã lệnh dưới đây là thêm mới Customer:
+        lc.addCustomer(c);
+        adapter.clear();
+        adapter.addAll(lc.getCustomers());
     }
 }

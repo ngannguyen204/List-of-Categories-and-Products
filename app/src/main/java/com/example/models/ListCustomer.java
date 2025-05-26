@@ -31,4 +31,17 @@ public class ListCustomer {
         addCustomer(new Customer(9,"Te","te@gmail.com","0987654","te","12398"));
         addCustomer(new Customer(10,"Nhu","nhu@gmail.com","098765487","nhu","12309"));
     }
+    public  boolean isExisting(Customer c)
+    {
+        for(Customer cus: customers)
+        {
+            if (cus.getId()==c.getId() ||
+                cus.getPhone().equals(c.getPhone())||
+                cus.getEmail().equalsIgnoreCase(c.getEmail())||
+                        cus.getUsername().equalsIgnoreCase(c.getUsername())
+                )
+                return true;
+        }
+        return false;
+    }
 }

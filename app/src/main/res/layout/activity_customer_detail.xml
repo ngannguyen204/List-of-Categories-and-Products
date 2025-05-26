@@ -124,26 +124,35 @@
             android:id="@+id/btnNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="3dp"
             android:layout_weight="1"
             android:backgroundTint="#87CEE6"
             android:text="@string/title_new"
-            android:textColor="#087189" />
+            android:textColor="#087189"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:backgroundTint="#0A728A"
-            android:text="@string/title_save" />
+            android:backgroundTint="#87CEE6"
+            android:text="@string/title_save"
+            android:textColor="#087189"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnRemove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:backgroundTint="#87CEE6"
             android:text="@string/title_remove"
-            android:textColor="#087189" />
+            android:textColor="#087189"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

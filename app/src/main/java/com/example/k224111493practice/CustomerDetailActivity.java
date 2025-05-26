@@ -2,6 +2,7 @@ package com.example.k224111493practice;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -35,6 +36,56 @@ public class CustomerDetailActivity extends AppCompatActivity {
             return insets;
         });
         addViews();
+        addEvents();
+    }
+
+    private void addEvents() {
+        btnNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                do_new();
+            }
+        });
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                do_save();
+            }
+        });
+        btnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                do_remove();
+            }
+        });
+    }
+
+    private void do_remove() {
+    }
+
+    private void do_save() {
+        //khởi tạo đối tượng từ giao dện nhập của customer
+        Customer c= new Customer();
+        c.setId(Integer.parseInt(edt_customer_id.getText().toString()));
+        c.setName(edt_customer_name.getText().toString());
+        c.setEmail(edt_customer_email.getText().toString());
+        c.setPhone(edt_customer_phone.getText().toString());
+        c.setUsername(edt_customer_username.getText().toString());
+        c.setPassword(edt_customer_password.getText().toString());
+//lấy intent tiwf màn hình gọi nó để dùng
+        Intent intent=getIntent();
+        //đóng gói Customer vào intent
+        intent.putExtra("NEW_CUSTOMER",c);
+        //đóng dấu để gửi dữ liệu về:
+        setResult(1000,intent);
+        //sau đó bắt buộc phải đóng màn hình này lại
+        //vì điện thoại ko cho phép cùng 1 lúc tại 1 vị trí có 2 màn hình
+        //mặc dù đt có chức năng chia màn hinnh thaành nheieuf phần
+        //để hiển thị nhiều phần mềm.
+        finish();
+    }
+
+    private void do_new() {
     }
 
     private void addViews() {
@@ -44,6 +95,9 @@ public class CustomerDetailActivity extends AppCompatActivity {
         edt_customer_phone=findViewById(R.id.edt_customer_phone);
         edt_customer_username=findViewById(R.id.edt_customer_username);
         edt_customer_password=findViewById(R.id.edt_customer_password);
+        btnNew=findViewById(R.id.btnNew);
+        btnSave=findViewById(R.id.btnSave);
+        btnRemove=findViewById(R.id.btnRemove);
         display_customer_detail();
 
     }
@@ -53,6 +107,8 @@ public class CustomerDetailActivity extends AppCompatActivity {
         Intent intent=getIntent();
         //Lấy customer liên quan biến mà ta đặt trong intent
         Customer c=(Customer) intent.getSerializableExtra("SELECTED_CUSTOMER");
+        if(c==null)
+            return;
          edt_customer_id.setText(c.getId()+"");
          edt_customer_name.setText(c.getName());
          edt_customer_email.setText(c.getEmail());
