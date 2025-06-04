@@ -8,6 +8,15 @@ public class Employee {
     private String password;
     private String position;
     private double salary;
+    private boolean saveInfor;
+
+    public boolean isSaveInfor() {
+        return saveInfor;
+    }
+
+    public void setSaveInfor(boolean saveInfor) {
+        this.saveInfor = saveInfor;
+    }
 
     // Constructors
     public Employee() {

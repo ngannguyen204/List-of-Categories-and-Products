@@ -1,5 +1,8 @@
 package com.example.models;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 
 public class ListCustomer {
@@ -43,5 +46,28 @@ public class ListCustomer {
                 return true;
         }
         return false;
+    }
+    public void getAllCustomers(SQLiteDatabase database){
+        Cursor cursor = database.rawQuery("SELECT * FROM Customer",
+                 null);
+        while(cursor.moveToNext()){
+
+        }    int id = cursor.getInt(0);
+        String name= cursor.getString(1);
+        String phone = cursor.getString(2);
+        String email = cursor.getString(3);
+        String username = cursor.getString(4);
+        String password=cursor.getString(5);
+        int saveInfor=cursor.getInt(6);
+        Customer c =new Customer();
+        c.setId(id);
+        c.setName(name);
+        c.setPhone(phone);
+        c.setEmail(email);
+        c.setUsername(username);
+        c.setPassword(password);
+        customers.add(c);
+            cursor.close();
+
     }
 }

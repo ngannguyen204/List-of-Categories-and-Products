@@ -1,10 +1,59 @@
 package com.example.connectors;
 
+import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import com.example.models.Employee;
 import com.example.models.ListEmployee;
 
 public class EmployeeConnector {
-    public Employee login(String usr,String pwd)
+    Activity context;
+    String DATABASE_NAME="SalesDatabase.sql";
+    private static final String DB_PATH_SUFFIX = "/databases/";
+    SQLiteDatabase database=null;
+
+    public EmployeeConnector(){
+
+    }
+
+    public EmployeeConnector(Activity context) {
+        this.context = context;
+    }
+    public Employee login(Activity context, String usr, String pwd)
+    {
+        //Tiến hay truy vấn SQLite DTB
+
+        database=context.openOrCreateDatabase(DATABASE_NAME,
+                context.MODE_PRIVATE,null);
+
+        Cursor cursor = database.rawQuery(
+                "SELECT * FROM Employee WHERE UserName= ? AND Password=?",
+                         new String[]{usr,pwd});
+        Employee emp=null;
+if(cursor.moveToNext())
+{
+    int id=cursor.getInt(0);
+    String name=cursor.getString(1);
+    String phone=cursor.getString(2);
+    String email=cursor.getString(3);
+    String username=cursor.getString(4);
+    String password=cursor.getString(5);
+    int saveInfor=cursor.getInt(6);
+    emp=new Employee();
+    emp.setName(name);
+    emp.setEmail(email);
+    emp.setUsername(username);
+    emp.setPassword(password);
+    emp.setSaveInfor(saveInfor==1?true:false);
+
+}
+cursor.close();
+
+        return emp;
+    }
+
+    public Employee login(String usr, String pwd)
     {
         ListEmployee le=new ListEmployee();
         le.generate_sample_dataset();

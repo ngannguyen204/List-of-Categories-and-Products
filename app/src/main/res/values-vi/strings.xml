@@ -30,4 +30,6 @@
     <string name="title_broadcast_advertising">Gửi quảng cáo</string>
     <string name="title_help">Hỗ trợ</string>
     <string name="title_customer_detail">Thông tin khách hàng</string>
+    <string name="title_customer_id">Mã khách hàng:</string>
+    <string name="title_customer_name">Tên khách hàng:</string>
 </resources>

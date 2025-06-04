@@ -49,5 +49,7 @@
     <string name="title_product_detail">Product Detail\n</string>
     <string name="title_create_new_product">New product\n</string>
     <string name="title_search_product">Search product</string>
+    <string name="title_payment_method">Payment Method\n</string>
+    <string name="title_order">Orders</string>
 
 </resources>

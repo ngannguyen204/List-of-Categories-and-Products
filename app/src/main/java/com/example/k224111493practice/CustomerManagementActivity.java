@@ -1,6 +1,7 @@
 package com.example.k224111493practice;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +34,10 @@ public class CustomerManagementActivity extends AppCompatActivity {
 
     final int ID_CREATE_NEW_CUSTOMER=1;
     final int ID_UPDATE_CUSTOMER=2;
+
+    String DATABASE_NAME="SalesDatabase.sql";
+    private static final String DB_PATH_SUFFIX = "/databases/";
+    SQLiteDatabase database=null;
 
 
     
@@ -73,7 +78,10 @@ public class CustomerManagementActivity extends AppCompatActivity {
                 CustomerManagementActivity.this,
                 android.R.layout.simple_list_item_1);
 
-        lc.generate_sample_dataset();
+       // lc.generate_sample_dataset();
+        database=openOrCreateDatabase(DATABASE_NAME,
+                MODE_PRIVATE,null);
+        lc.getAllCustomers(database);
         adapter.addAll(lc.getCustomers());
 
         lvCustomer.setAdapter(adapter);
