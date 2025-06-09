@@ -94,19 +94,15 @@ public class ProductManagementActivity extends AppCompatActivity {
 
     }
 
-
-
     private void addViews() {
         spinnerCategory=findViewById(R.id.spinnerCategory);
         adapterCategory= new ArrayAdapter<>(ProductManagementActivity.this,
                 android.R.layout.simple_spinner_item);
         adapterCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapterCategory);
-
         listCategory= new ListCategory();
         listCategory.generate_product_dataset();
         adapterCategory.addAll(listCategory.getCategories());
-
 
         lvProduct=findViewById(R.id.lvProduct);
         adapterProduct= new ArrayAdapter<>(ProductManagementActivity.this,

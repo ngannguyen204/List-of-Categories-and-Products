@@ -7,6 +7,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adapters.PaymentMethodAdapter;
+import com.example.connectors.PaymentMethodConnector;
 import com.example.models.ListPaymentMethod;
 import com.example.models.PaymentMethod;
 import com.example.k224111493practice.R;
@@ -17,6 +18,8 @@ public class PaymentMethodActivity extends AppCompatActivity {
     ListView lvPaymentMethod;
     ArrayList<PaymentMethod> methods;
     PaymentMethodAdapter adapter;
+    PaymentMethodConnector pmc;
+    ListPaymentMethod lpm;
     SQLiteDatabase database;
     String DATABASE_NAME = "SalesDatabase.sql";
 

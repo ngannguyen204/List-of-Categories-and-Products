@@ -29,26 +29,26 @@ public class EmployeeConnector {
 
         Cursor cursor = database.rawQuery(
                 "SELECT * FROM Employee WHERE UserName= ? AND Password=?",
-                         new String[]{usr,pwd});
+                new String[]{usr,pwd});
         Employee emp=null;
-if(cursor.moveToNext())
-{
-    int id=cursor.getInt(0);
-    String name=cursor.getString(1);
-    String phone=cursor.getString(2);
-    String email=cursor.getString(3);
-    String username=cursor.getString(4);
-    String password=cursor.getString(5);
-    int saveInfor=cursor.getInt(6);
-    emp=new Employee();
-    emp.setName(name);
-    emp.setEmail(email);
-    emp.setUsername(username);
-    emp.setPassword(password);
-    emp.setSaveInfor(saveInfor==1?true:false);
+        if(cursor.moveToNext())
+        {
+            int id=cursor.getInt(0);
+            String name=cursor.getString(1);
+            String phone=cursor.getString(2);
+            String email=cursor.getString(3);
+            String username=cursor.getString(4);
+            String password=cursor.getString(5);
+            int saveInfor=cursor.getInt(6);
+            emp=new Employee();
+            emp.setName(name);
+            emp.setEmail(email);
+            emp.setUsername(username);
+            emp.setPassword(password);
+            emp.setSaveInfor(saveInfor==1?true:false);
 
-}
-cursor.close();
+        }
+        cursor.close();
 
         return emp;
     }

@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     TextView txtAdvancedProduct;
     ImageView imgPaymentMethod;
     TextView txtPaymentMethod;
-
+    ImageView imgOrder;
+    TextView txtOrder;
 
 
 
@@ -121,7 +122,21 @@ public class MainActivity extends AppCompatActivity {
                 openPaymentMethodActivity();
             }
         });
+        imgOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openOrdersViewerActivity();
+            }
+        });
+        txtOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openOrdersViewerActivity();
+            }
+        });
     }
+
+
 
 
     private void addViews() {
@@ -137,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
         txtAdvancedProduct=findViewById(R.id.txtAdvancedProduct);
         imgPaymentMethod=findViewById(R.id.imgPaymentMethod);
         txtPaymentMethod=findViewById(R.id.txtPaymentMethod);
+        imgOrder=findViewById(R.id.imgOrder);
+        txtOrder=findViewById(R.id.txtOrder);
 
     }
 
@@ -168,5 +185,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(MainActivity.this, PaymentMethodActivity.class);
         startActivity(intent);
     }
-
+    private void openOrdersViewerActivity() {
+        Intent intent=new Intent(MainActivity.this,OrdersViewerActivity.class);
+        startActivity(intent);
+    }
 }
