@@ -200,13 +200,20 @@ public class TelephonyActivity extends AppCompatActivity {
     private void filterContactsByCarrier(String carrier) {
         List<TelephonyInfor> filteredList = new ArrayList<>();
         for (TelephonyInfor contact : allContacts) {
-            if (contact.getCarrier().equals(carrier)) {
+            String contactCarrier = contact.getCarrier();
+            if (contactCarrier.equals(carrier)) {
                 filteredList.add(contact);
             }
         }
         adapter.clear();
         adapter.addAll(filteredList);
-        Toast.makeText(this, "Showing " + carrier + " contacts: " + filteredList.size(), Toast.LENGTH_SHORT).show();
+
+        // Show more detailed info in the toast
+        String message = "Showing " + carrier + " contacts: " + filteredList.size() + "\n";
+        for (TelephonyInfor contact : filteredList) {
+            message += contact.getDisplayName() + ": " + contact.getPhoneNumber() + "\n";
+        }
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     private void addViews() {
