@@ -50,6 +50,7 @@ public class ListCustomer {
     public void getAllCustomers(SQLiteDatabase database) {
         Cursor cursor = database.rawQuery("SELECT * FROM Customer",
                 null);
+        customers.clear();
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
             String name = cursor.getString(1);

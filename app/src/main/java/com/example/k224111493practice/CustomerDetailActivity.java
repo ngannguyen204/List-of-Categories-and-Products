@@ -24,6 +24,10 @@ public class CustomerDetailActivity extends AppCompatActivity {
     Button btnNew;
     Button btnSave;
     Button btnRemove;
+    int type=0;//nhận intent từ bên manage truền qua để xem detail
+    //type=1 để thêm mới
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +65,19 @@ public class CustomerDetailActivity extends AppCompatActivity {
     }
 
     private void do_remove() {
+        int id=Integer.parseInt(edt_customer_id.getText().toString());
+        Intent intent=getIntent();
+        intent.putExtra("CUSTOMER_ID_REMOVE",id);
+        setResult(9000,intent);
+        finish();
+
     }
 
     private void do_save() {
         //khởi tạo đối tượng từ giao dện nhập của customer
         Customer c= new Customer();
-        c.setId(Integer.parseInt(edt_customer_id.getText().toString()));
+        if(type==0)//vì là xem detail sẽ có ID
+       c.setId(Integer.parseInt(edt_customer_id.getText().toString())); //tự động tăng
         c.setName(edt_customer_name.getText().toString());
         c.setEmail(edt_customer_email.getText().toString());
         c.setPhone(edt_customer_phone.getText().toString());
@@ -76,6 +87,7 @@ public class CustomerDetailActivity extends AppCompatActivity {
         Intent intent=getIntent();
         //đóng gói Customer vào intent
         intent.putExtra("NEW_CUSTOMER",c);
+        intent.putExtra("TYPE",type);
         //đóng dấu để gửi dữ liệu về:
         setResult(1000,intent);
         //sau đó bắt buộc phải đóng màn hình này lại
@@ -105,10 +117,17 @@ public class CustomerDetailActivity extends AppCompatActivity {
     private void display_customer_detail() {
         //lấy intent từ customer management gửi tới
         Intent intent=getIntent();
+        type=intent.getIntExtra("TYPE",1);
         //Lấy customer liên quan biến mà ta đặt trong intent
         Customer c=(Customer) intent.getSerializableExtra("SELECTED_CUSTOMER");
         if(c==null)
+            //TTHEME MOI, LUC NAY AN O NHAP MA KHACH HANG
+        {
+            edt_customer_id.setVisibility(View.INVISIBLE);
+
             return;
+        }
+
          edt_customer_id.setText(c.getId()+"");
          edt_customer_name.setText(c.getName());
          edt_customer_email.setText(c.getEmail());

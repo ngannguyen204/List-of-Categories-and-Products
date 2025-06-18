@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_all"
+        android:title="All Contacts"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_viettel"
+        android:title="Viettel"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_mobifone"
+        android:title="MobiFone"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_vinaphone"
+        android:title="Vinaphone"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_other"
+        android:title="Other Networks"
+        app:showAsAction="never" />
+
+</menu>

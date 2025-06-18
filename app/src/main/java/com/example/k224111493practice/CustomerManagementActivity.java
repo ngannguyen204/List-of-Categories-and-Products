@@ -1,5 +1,6 @@
 package com.example.k224111493practice;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -68,7 +69,10 @@ public class CustomerManagementActivity extends AppCompatActivity {
     private void openCustomerDetailActivity(Customer c) {
         Intent intent = new Intent(CustomerManagementActivity.this, CustomerDetailActivity.class);
         intent.putExtra("SELECTED_CUSTOMER",c);
-        startActivity(intent);
+        intent.putExtra("TYPE",0);
+//        startActivity(intent);
+        startActivityForResult(intent,ID_CREATE_NEW_CUSTOMER);
+
 
     }
 
@@ -120,6 +124,7 @@ public class CustomerManagementActivity extends AppCompatActivity {
 
     private void openNewCustomerActivity() {
         Intent intent = new Intent(CustomerManagementActivity.this, CustomerDetailActivity.class);
+        intent.putExtra("TYPE",1);
         startActivityForResult(intent,ID_CREATE_NEW_CUSTOMER);
 
     }
@@ -132,19 +137,76 @@ public class CustomerManagementActivity extends AppCompatActivity {
             //lấy kết quả ra:
             Customer c= (Customer) data.getSerializableExtra("NEW_CUSTOMER");
             //tới đây có 2 tình huống: Mới or Cập nhật?
+            int type=data.getIntExtra("TYPE",1);
+            if(type==1)
+                //thêm mới
             process_save_customer(c);
+            else
+                process_save_update_customer(c);
 
         }
+        else if(requestCode==ID_CREATE_NEW_CUSTOMER && resultCode==9000)
+        {
+            int cust_id=data.getIntExtra("CUSTOMER_ID_REMOVE",-1);
+            if(cust_id!=-1)
+            {
+                //xử lý xóa Customer có id là cust_id
+                process_remove_customer(cust_id);
+            }
+        }
     }
+
+    private void process_remove_customer(int custId) {
+        int id=database.delete("Customer","Id=?",new String[]{custId+""});
+        if(id>0)
+        {
+            lc.getCustomers().clear();
+            lc.getAllCustomers(database);
+            adapter.clear();
+            adapter.addAll(lc.getCustomers());
+        }
+
+    }
+
+    private void process_save_update_customer(Customer c) {
+        ContentValues values= new ContentValues();
+        values.put("Name",c.getName());
+        values.put("Phone",c.getPhone());
+        values.put("Email",c.getEmail());
+        values.put("Username",c.getUsername());
+        values.put("Password",c.getPassword());
+        values.put("SaveInfor",0);
+        int id =database.update("Customer",values,"Id=?",new String[]{c.getId()+""});
+        if(id>0)
+        {
+            lc.getCustomers().clear();
+            lc.getAllCustomers(database);
+            adapter.clear();
+            adapter.addAll(lc.getCustomers());
+        }
+
+
+    }
+
     private  void process_save_customer(Customer c)
     {
-        boolean result=lc.isExisting(c);
-        if(result==true)//đã tồn tại cus này rồi
-            return;//không thêm mới
-        //còn muốn cập nhật thì viết code cập nhật
-        //các mã lệnh dưới đây là thêm mới Customer:
-        lc.addCustomer(c);
-        adapter.clear();
-        adapter.addAll(lc.getCustomers());
+            //xử lý thêm customer
+        ContentValues values= new ContentValues();
+        values.put("Name",c.getName());
+        values.put("Phone",c.getPhone());
+        values.put("Email",c.getEmail());
+        values.put("Username",c.getUsername());
+        values.put("Password",c.getPassword());
+        values.put("SaveInfor",0);
+        long id=database.insert("Customer",null,values);
+        if(id>0)//thêm thành công
+        {
+            //nạp lại dữ liệu từ bảng Customer lên cho giao diện:
+            lc.getCustomers().clear();
+            lc.getAllCustomers(database);
+            adapter.clear();
+            adapter.addAll(lc.getCustomers());
+        }
+
     }
 }
