@@ -220,6 +220,12 @@ public class TelephonyActivity extends AppCompatActivity {
         lvTelephonyinfor = findViewById(R.id.lvTelephonyinfor);
         adapter = new TelephonyInforAdapter(TelephonyActivity.this, R.layout.item_telephonyinfor);
         lvTelephonyinfor.setAdapter(adapter);
+
+        // Thêm sự kiện click vào item contact
+        lvTelephonyinfor.setOnItemClickListener((parent, view, position, id) -> {
+            TelephonyInfor selectedContact = adapter.getItem(position);
+            openSendSmsActivity(selectedContact);
+        });
     }
 
     private void readAllContacts() {
@@ -250,6 +256,12 @@ public class TelephonyActivity extends AppCompatActivity {
         sms.sendTextMessage(ti.getPhoneNumber(), null, content, null, null);
         Toast.makeText(TelephonyActivity.this, "Đã gửi tin nhắn tới " + ti.getPhoneNumber(),
                 Toast.LENGTH_LONG).show();
+    }
+    // Thêm phương thức này trong TelephonyActivity
+    public void openSendSmsActivity(TelephonyInfor ti) {
+        Intent intent = new Intent(this, SendSMSActivity.class);
+        intent.putExtra("TI", ti); // Truyền đối tượng TelephonyInfor
+        startActivity(intent);
     }
 
     @SuppressLint("UnspecifiedRegisterReceiverFlag")

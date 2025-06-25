@@ -54,5 +54,19 @@
     <string name="title_main_contact">Contact</string>
     <string name="title_phone">Phone:</string>
     <string name="title_body_sms">Body SMS:</string>
+    <string name="title_multi_threading">Multi Threading</string>
+    <string name="title_handler_send_message">HANDLER SEND MESSAGE</string>
+    <string name="title_handler_post_message">HANDLER POST MESSAGE</string>
+    <string name="title_asynctask">ASYNCTASK</string>
+    <string name="title_number">5000</string>
+    <string name="title_handle_draw">DRAW</string>
+    <string name="title_number_contact">Number Of Contact</string>
+    <string name="title_create_contact">CREATE CONTACT</string>
+    <string name="title_async_task_header">Enter number of button</string>
+    <string name="title_async_task_draw">Draw</string>
+    <string name="title_button_insert_contact">INSERT CONTACT</string>
+    <string name="title_back">Back</string>
+    <string name="title_update">Update</string>
+    <string name="title_delete">Delete</string>
 
 </resources>

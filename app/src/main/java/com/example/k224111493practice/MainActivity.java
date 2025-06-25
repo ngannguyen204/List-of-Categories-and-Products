@@ -29,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
     TextView txtOrder;
     ImageView imgContact;
     TextView txtContact;
+    ImageView imgMultiThreading;
+    TextView txtMultiThreading;
+
+    ImageView imgContactFirebase;
+    TextView txtContactFirebase;
 
 
 
@@ -147,9 +152,36 @@ public class MainActivity extends AppCompatActivity {
                 openTelephonyActivity();
             }
         });
+        imgMultiThreading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMultiThreadingCategoriesActivity();
+            }
+        });
+        txtMultiThreading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMultiThreadingCategoriesActivity();
+            }
+        });
+        imgContactFirebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openContactActivity();
+            }
+        });
+        txtContactFirebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openContactActivity();
+            }
+        });
     }
 
-
+    private void openContactActivity() {
+        Intent intent=new Intent(MainActivity.this,ContactActivity.class);
+        startActivity(intent);
+    }
 
 
     private void addViews() {
@@ -169,6 +201,10 @@ public class MainActivity extends AppCompatActivity {
         txtOrder=findViewById(R.id.txtOrder);
         imgContact=findViewById(R.id.imgContact);
         txtContact=findViewById(R.id.txtContact);
+        imgMultiThreading=findViewById(R.id.imgMultiThreading);
+        txtMultiThreading=findViewById(R.id.txtMultiThreading);
+        imgContactFirebase=findViewById(R.id.imgContactFirebase);
+        txtContactFirebase=findViewById(R.id.txtContactFirebase);
 
     }
 
@@ -206,6 +242,10 @@ public class MainActivity extends AppCompatActivity {
     }
     private void openTelephonyActivity() {
         Intent intent=new Intent(MainActivity.this,TelephonyActivity.class);
+        startActivity(intent);
+    }
+    private void openMultiThreadingCategoriesActivity() {
+        Intent intent=new Intent(MainActivity.this, MultiThreadingCategoriesActivity.class);
         startActivity(intent);
     }
 }

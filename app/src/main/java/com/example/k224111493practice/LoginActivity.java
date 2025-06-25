@@ -1,13 +1,19 @@
 package com.example.k224111493practice;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -37,10 +43,12 @@ public class LoginActivity extends AppCompatActivity {
     String DATABASE_NAME="SalesDatabase.sql";
     private static final String DB_PATH_SUFFIX = "/databases/";
     SQLiteDatabase database=null;
+    BroadcastReceiver networkReceiver=null;
 
     private int backPressCount = 0;
     private static final int MAX_BACK_PRESS_COUNT = 3;
     private long lastBackPressTime = 0;
+    Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,27 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         processCopy();
+
+        setupBroadcastReceiver();
+    }
+
+    private void setupBroadcastReceiver() {
+        networkReceiver=new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                ConnectivityManager connectivityManager=(ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+                if (networkInfo !=null&& networkInfo.isConnected())
+                {
+                    btnLogin.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    Toast.makeText(LoginActivity.this,"Internet is died",Toast.LENGTH_LONG).show();
+                    btnLogin.setVisibility(View.INVISIBLE);
+                }
+            }
+        };
     }
 
 
@@ -65,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
         edtUsername = findViewById(R.id.edtUserName);
         edtPassword = findViewById(R.id.edtPassword);
         chkSaveLogin = findViewById(R.id.chkSaveLoginInfor);
+        btnLogin=findViewById(R.id.btnLogin);
     }
 
     @Override
@@ -168,19 +198,22 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("PASSWORD",pwd);
         editor.putBoolean("SAVED",isSave);
         editor.commit();
-
     }
-
     @Override
     protected void onPause() {
         super.onPause();
         saveLoginInformation();
+        if(networkReceiver!=null)
+            unregisterReceiver(networkReceiver);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         restoreLoginInformation();
+
+        IntentFilter filter=new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkReceiver,filter);
     }
 
     public void restoreLoginInformation()

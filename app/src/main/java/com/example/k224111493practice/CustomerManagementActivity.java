@@ -184,8 +184,6 @@ public class CustomerManagementActivity extends AppCompatActivity {
             adapter.clear();
             adapter.addAll(lc.getCustomers());
         }
-
-
     }
 
     private  void process_save_customer(Customer c)

@@ -22,18 +22,7 @@ public class ListCustomer {
     public void setCustomers(ArrayList<Customer> customers){
         this.customers=customers;
     }
-    public void generate_sample_dataset(){
-        addCustomer(new Customer(1,"Teo","teo@gmail.com","0987654","teo","123"));
-        addCustomer(new Customer(2,"Ti","ti@gmail.com","0876543","ti","1234"));
-        addCustomer(new Customer(3,"Tinh","tinh@gmail.com","09876541","tinh","12345"));
-        addCustomer(new Customer(4,"Ngan","ngan@gmail.com","0678954","ngan","12356"));
-        addCustomer(new Customer(5,"Mai","mai@gmail.com","098765412","mai","12354"));
-        addCustomer(new Customer(6,"Van","van@gmail.com","098768765","van","12309"));
-        addCustomer(new Customer(7,"Linh","linh@gmail.com","098765434","linh","12387"));
-        addCustomer(new Customer(8,"Truc","truc@gmail.com","0987654","truc","1235"));
-        addCustomer(new Customer(9,"Te","te@gmail.com","0987654","te","12398"));
-        addCustomer(new Customer(10,"Nhu","nhu@gmail.com","098765487","nhu","12309"));
-    }
+
     public  boolean isExisting(Customer c)
     {
         for(Customer cus: customers)
